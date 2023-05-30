@@ -1,1 +1,1 @@
-/Users/fadde/Projects/reditor/target/debug/reditor: /Users/fadde/Projects/reditor/src/editor.rs /Users/fadde/Projects/reditor/src/main.rs /Users/fadde/Projects/reditor/src/terminal.rs
+/Users/fadde/Projects/reditor/target/debug/reditor: /Users/fadde/Projects/reditor/src/document.rs /Users/fadde/Projects/reditor/src/editor.rs /Users/fadde/Projects/reditor/src/main.rs /Users/fadde/Projects/reditor/src/row.rs /Users/fadde/Projects/reditor/src/terminal.rs

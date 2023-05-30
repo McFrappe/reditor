@@ -1,9 +1,11 @@
-/Users/fadde/Projects/reditor/target/debug/deps/reditor-2fe735bceb7bdcb0.rmeta: src/main.rs src/editor.rs src/terminal.rs Cargo.toml
+/Users/fadde/Projects/reditor/target/debug/deps/reditor-2fe735bceb7bdcb0.rmeta: src/main.rs src/document.rs src/editor.rs src/row.rs src/terminal.rs Cargo.toml
 
-/Users/fadde/Projects/reditor/target/debug/deps/reditor-2fe735bceb7bdcb0.d: src/main.rs src/editor.rs src/terminal.rs Cargo.toml
+/Users/fadde/Projects/reditor/target/debug/deps/reditor-2fe735bceb7bdcb0.d: src/main.rs src/document.rs src/editor.rs src/row.rs src/terminal.rs Cargo.toml
 
 src/main.rs:
+src/document.rs:
 src/editor.rs:
+src/row.rs:
 src/terminal.rs:
 Cargo.toml:
 
