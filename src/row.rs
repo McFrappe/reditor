@@ -20,11 +20,11 @@ impl Row {
         self.string.get(start..end).unwrap_or_default().to_string()
     }
 
-    pub fn len(&self) -> usize {
+    #[must_use] pub fn len(&self) -> usize {
         self.string.len()
     }
 
-    pub fn is_empty(&self) -> bool {
+    #[must_use] pub fn is_empty(&self) -> bool {
         self.string.is_empty()
     }
 }
