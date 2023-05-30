@@ -59,8 +59,17 @@ impl Editor {
         if let Key::Ctrl('q') = pressed_key {
             self.should_quit = true;
         }
-        if let Key::Up | Key::Down | Key::Left | Key::Right = pressed_key {
-            self.move_cursor(pressed_key);
+        if let
+            Key::Up
+                | Key::Down
+                | Key::Left
+                | Key::Right
+                | Key::PageUp
+                | Key::PageDown
+                | Key::End
+                | Key::Home
+                = pressed_key {
+                    self.move_cursor(pressed_key);
         }
         Ok(())
     }
@@ -76,6 +85,10 @@ impl Editor {
             Key::Down => { if y < height { y = y.saturating_add(1); }},
             Key::Left => x = x.saturating_sub(1),
             Key::Right => { if x < width { x = x.saturating_add(1); }},
+            Key::PageUp => y = 0,
+            Key::PageDown => y = height,
+            Key::Home => x = 0,
+            Key::End => x = width,
             _ => (),
         }
 
