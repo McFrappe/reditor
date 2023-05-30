@@ -27,7 +27,7 @@ impl Row {
         let mut result = String::new();
         for grapheme in self.string[..].graphemes(true).skip(start).take(end - start) {
             if grapheme == "\t" {
-                result.push_str(" ")
+                result.push_str(" ");
             } else {
                 result.push_str(grapheme);
             }
