@@ -12,7 +12,8 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 const STATUS_BG_COLOR: color::Rgb = color::Rgb(198, 156, 197);
 const STATUS_FG_COLOR: color::Rgb = color::Rgb(63, 63, 63);
 
-#[derive(Default)] pub struct Position {
+#[derive(Default)]
+pub struct Position {
     pub x: usize,
     pub y: usize,
 }
@@ -41,7 +42,7 @@ pub struct Editor {
 }
 
 impl Editor {
-    pub fn run (&mut self) {
+    pub fn run(&mut self) {
         loop {
             if let Err(error) = self.refresh_screen() {
                 die(&error);
@@ -144,28 +145,29 @@ impl Editor {
 
     fn process_keypress(&mut self) -> Result<(), std::io::Error> {
         let pressed_key = Terminal::read_key()?;
-        if let Key::Ctrl('q') = pressed_key {
-            self.should_quit = true;
-        }
-        if let
+        match pressed_key {
+            Key::Ctrl('q') => self.should_quit = true,
+            Key::Char(c) => {
+                self.document.insert(&self.cursor_position, c);
+                self.move_cursor(Key::Right);
+            }
             Key::Up
-                | Key::Down
-                | Key::Left
-                | Key::Right
-                | Key::PageUp
-                | Key::PageDown
-                | Key::End
-                | Key::Home
-                | Key::Char('h' | 'j' | 'k' | 'l')
-                = pressed_key {
-                    self.move_cursor(pressed_key);
+            | Key::Down
+            | Key::Left
+            | Key::Right
+            | Key::PageUp
+            | Key::PageDown
+            | Key::End
+            | Key::Home
+            | Key::Char('h' | 'j' | 'k' | 'l') => self.move_cursor(pressed_key),
+            _ => (),
         }
         self.scroll();
         Ok(())
     }
 
     fn scroll(&mut self) {
-        let Position { x, y } =  self.cursor_position;
+        let Position { x, y } = self.cursor_position;
         let width = self.terminal.size().width as usize;
         let height = self.terminal.size().height as usize;
         let mut offset = &mut self.offset;
@@ -193,9 +195,13 @@ impl Editor {
         };
 
         match key {
-            Key::Up | Key::Char('k')    => y = y.saturating_sub(1),
-            Key::Down | Key::Char('j')  => { if y < height { y = y.saturating_add(1); }},
-            Key::Left | Key::Char('h')  => {
+            Key::Up | Key::Char('k') => y = y.saturating_sub(1),
+            Key::Down | Key::Char('j') => {
+                if y < height {
+                    y = y.saturating_add(1);
+                }
+            }
+            Key::Left | Key::Char('h') => {
                 if x > 0 {
                     x -= 1;
                 } else if y > 0 {
@@ -206,7 +212,7 @@ impl Editor {
                         x = 0;
                     }
                 }
-            },
+            }
             Key::Right | Key::Char('l') => {
                 if x < width {
                     x += 1;
@@ -214,21 +220,21 @@ impl Editor {
                     y += 1;
                     x = 0;
                 }
-            },
+            }
             Key::PageUp => {
                 y = if y > terminal_height {
                     y - terminal_height
                 } else {
                     0
                 }
-            },
+            }
             Key::PageDown => {
                 y = if y.saturating_add(terminal_height) < height {
                     y + terminal_height
                 } else {
                     height
                 }
-            },
+            }
             Key::Home => x = 0,
             Key::End => x = width,
             _ => (),
@@ -244,7 +250,7 @@ impl Editor {
             x = width;
         }
 
-        self.cursor_position = Position {x, y};
+        self.cursor_position = Position { x, y };
     }
 
     fn draw_welcome_message(&self) {
@@ -280,7 +286,6 @@ impl Editor {
             }
         }
     }
-
 }
 
 fn die(e: &std::io::Error) {
