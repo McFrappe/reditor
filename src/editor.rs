@@ -89,7 +89,7 @@ impl Editor {
 
         if self.should_quit {
             Terminal::clear_screen();
-            println!("Goodbye. \r");
+            println!("Exited. \r");
         } else {
             self.draw_rows();
             self.draw_status_bar();
@@ -151,6 +151,13 @@ impl Editor {
                 self.document.insert(&self.cursor_position, c);
                 self.move_cursor(Key::Right);
             }
+            Key::Delete => self.document.delete(&self.cursor_position),
+            Key::Backspace => {
+                if self.cursor_position.x > 0 || self.cursor_position.y > 0 {
+                    self.move_cursor(Key::Left);
+                    self.document.delete(&self.cursor_position);
+                }
+            }
             Key::Up
             | Key::Down
             | Key::Left
@@ -158,8 +165,8 @@ impl Editor {
             | Key::PageUp
             | Key::PageDown
             | Key::End
-            | Key::Home
-            | Key::Char('h' | 'j' | 'k' | 'l') => self.move_cursor(pressed_key),
+            | Key::Home => self.move_cursor(pressed_key),
+            // | Key::Char('h' | 'j' | 'k' | 'l') => self.move_cursor(pressed_key),
             _ => (),
         }
         self.scroll();
