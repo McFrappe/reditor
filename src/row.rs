@@ -95,4 +95,8 @@ impl Row {
         self.update_len();
         Self::from(&remainder[..])
     }
+
+    pub fn as_bytes(&self) -> &[u8] {
+        self.string.as_bytes()
+    }
 }
