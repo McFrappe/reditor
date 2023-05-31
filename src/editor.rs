@@ -182,6 +182,7 @@ impl Editor {
                         "WARNING! File has unsaved changes. Press Ctrl-Q {} more times to quit.",
                         self.quit_times
                     ));
+                    self.quit_times -= 1;
                     return Ok(());
                 }
 

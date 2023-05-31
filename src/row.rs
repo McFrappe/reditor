@@ -12,7 +12,7 @@ impl From<&str> for Row {
         Self {
             string: String::from(slice),
             len: slice.graphemes(true).count(),
-        };
+        }
     }
 }
 

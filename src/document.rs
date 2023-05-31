@@ -106,7 +106,7 @@ impl Document {
                 file.write_all(row.as_bytes())?;
                 file.write_all(b"\n")?;
             }
-            self.dirty = true;
+            self.dirty = false;
         }
         Ok(())
     }
