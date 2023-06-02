@@ -3,7 +3,7 @@ A simple text editor writtein in Rust. Does nothing fancy (yet). It
 literally just allows you to edit text, and save. You can also use it
 to create a new file with text in it :).
 
-![](smalldemo.mov)
+[![asciicast](https://asciinema.org/a/FpS8mnsThZCsk2bxFndNvi7Hw.svg)](https://asciinema.org/a/FpS8mnsThZCsk2bxFndNvi7Hw)
 
 
 To run, simply use:
