@@ -254,7 +254,6 @@ impl Editor {
             | Key::PageDown
             | Key::End
             | Key::Home => self.move_cursor(pressed_key),
-            // | Key::Char('h' | 'j' | 'k' | 'l') => self.move_cursor(pressed_key),
             _ => (),
         }
         self.scroll();

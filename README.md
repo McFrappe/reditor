@@ -1,7 +1,10 @@
 # Reditor (Rust Editor)
-A simple text editor writtein in Rust. Does nothing fancy (yet). It literally
-just allows you to edit text, and save. You can also use it to create a new
-file with text in it :).
+A simple text editor writtein in Rust. Does nothing fancy (yet). It
+literally just allows you to edit text, and save. You can also use it
+to create a new file with text in it :).
+
+![](smalldemo.mov)
+
 
 To run, simply use:
 
