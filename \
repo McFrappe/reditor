@@ -159,7 +159,7 @@ impl Row {
             for (grapheme_idx, (byte_idx, _)) in substring[..].grapheme_indices(true).enumerate() {
                 if matching_byte_idx == byte_idx {
                     #[allow(clippy::integer_arithmetic)]
-                    return Some(start + grapheme_idx);
+                    return Some(grapheme_idx);
                 }
             }
         }
